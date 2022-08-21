@@ -58,18 +58,22 @@ public class Main {
     }
 
     private static void deleteMessage() {
+        // Prompt user for input
         System.out.print("Please enter  the contact name: ");
         String name = scanner.next();
+        // initialize variables to track the state of the method
         boolean isFound = false;
         Contact isContact = null;
         Message delMessage = null;
         ArrayList<Message> contactMessages = new ArrayList<>();
+        // Ask user to enter another name id the previous is not valid
         if (name.equals("")) {
             System.out.println("Please enter a valid name");
-            deleteContact();
+            deleteMessage();
         } else {
             for (Contact c: contacts) {
                 if (c.getName().equals(name)) {
+                    // contact found and saved in a placeholder
                     isFound = true;
                     isContact = c;
                 }
@@ -77,23 +81,28 @@ public class Main {
             if (isFound) {
                 contactMessages.addAll(isContact.getMessages());
                 if (contactMessages.size()>0) {
+                    // Show all the messages to the user to chose which one to delete
                     for (Message m: contactMessages) {
                         m.getDetails();
                         System.out.println("*****************************");
                     }
+                    // Prompt user for message ID
                     System.out.print("Please enter the ID of the message you want to delete: ");
                     int id = 0;
+                    // cath the exception if user enters a text instead
                     try {
                         id = scanner.nextInt();
                     } catch (Exception e) {
                         System.out.println("Please enter a valid message ID");
                     }
 
+                    // Extract the message to be deleted if ID is valid
                     for (Message m: contactMessages) {
                         if (m.getId() == id) {
                             delMessage = m;
                         }
                     }
+                    // Check if the message exist
                     if (delMessage != null) {
                         contactMessages.remove(delMessage);
                         for (Contact c: contacts){
@@ -103,6 +112,7 @@ public class Main {
                             }
                         }
                     } else {
+                        // notify the user if the message does not exist.
                         System.out.println("Message not found");
                         showInitialInfo();
                     }
