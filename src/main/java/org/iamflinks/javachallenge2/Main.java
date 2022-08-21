@@ -54,7 +54,12 @@ public class Main {
                 "\n\t1. Show all messages" +
                 "\n\t2. Send a new message" +
                 "\n\t3. Previous menu");
-        int choice = scanner.nextInt();
+        int choice = 0;
+        try {
+            choice = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("Please select a valid choice.");
+        }
 
         switch (choice) {
             case 1 -> showAllMessage();
