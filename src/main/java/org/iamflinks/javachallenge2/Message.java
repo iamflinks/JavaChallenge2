@@ -1,3 +1,7 @@
+/**
+ * Created by iamflinks on Aug, 2022
+ */
+
 package org.iamflinks.javachallenge2;
 
 public class Message {
