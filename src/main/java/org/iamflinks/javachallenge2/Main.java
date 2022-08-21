@@ -39,7 +39,14 @@ public class Main {
         System.out.println("Please select an option: " +
                 "\n\t1. Manage Contacts" + "\t2. Messaging" + "\t3. Quit the Application");
         scanner = new Scanner(System.in);
-        int option = scanner.nextInt();
+
+        int option = 0;
+        try {
+            option = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("Please select a valid choice.");
+            showInitialInfo();
+        }
 
         switch (option) {
             case 1 -> manageContacts();
