@@ -131,9 +131,8 @@ public class Main {
         int choice = 0;
         try {
             choice = scanner.nextInt();
-        } catch (InputMismatchException e) {
+        } catch (Exception e) {
             System.out.println("Please select a valid choice.");
-            manageContacts();
         }
 
         switch (choice) {
