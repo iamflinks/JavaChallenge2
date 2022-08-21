@@ -101,10 +101,11 @@ public class Main {
                         if (c.getName().equals(name)){
                             ArrayList<Message> newMessages = c.getMessages();
                             newMessages.add(message);
-                            Contact currentContact = c;
-                            currentContact.setMessages(newMessages);
-                            contacts.remove(c);
-                            contacts.add(currentContact);
+                            c.setMessages(newMessages);
+//                            Contact currentContact = c;
+//                            currentContact.setMessages(newMessages);
+//                            contacts.remove(c);
+//                            contacts.add(currentContact);
                             System.out.println("Message sent successfully");
                         }
                     }
