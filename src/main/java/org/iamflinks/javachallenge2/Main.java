@@ -51,16 +51,80 @@ public class Main {
         switch (option) {
             case 1 -> manageContacts();
             case 2 -> manageMessages();
+            case 3 -> {}
             default -> {
             }
         }
+    }
+
+    private static void deleteMessage() {
+        System.out.print("Please enter  the contact name: ");
+        String name = scanner.next();
+        boolean isFound = false;
+        Contact isContact = null;
+        Message delMessage = null;
+        ArrayList<Message> contactMessages = new ArrayList<>();
+        if (name.equals("")) {
+            System.out.println("Please enter a valid name");
+            deleteContact();
+        } else {
+            for (Contact c: contacts) {
+                if (c.getName().equals(name)) {
+                    isFound = true;
+                    isContact = c;
+                }
+            }
+            if (isFound) {
+                contactMessages.addAll(isContact.getMessages());
+                if (contactMessages.size()>0) {
+                    for (Message m: contactMessages) {
+                        m.getDetails();
+                        System.out.println("*****************************");
+                    }
+                    System.out.print("Please enter the ID of the message you want to delete: ");
+                    int id = 0;
+                    try {
+                        id = scanner.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Please enter a valid message ID");
+                    }
+
+                    for (Message m: contactMessages) {
+                        if (m.getId() == id) {
+                            delMessage = m;
+                        }
+                    }
+                    if (delMessage != null) {
+                        contactMessages.remove(delMessage);
+                        for (Contact c: contacts){
+                            if (c.getName().equals(name)){
+                                c.setMessages(contactMessages);
+                                System.out.println("Message deleted successfully");
+                            }
+                        }
+                    } else {
+                        System.out.println("Message not found");
+                        showInitialInfo();
+                    }
+
+                } else {
+                    System.out.println(name + "Does not have any messages.");
+                    showInitialInfo();
+                }
+            } else {
+                System.out.println(name + " is not on your contact list");
+                showInitialInfo();
+            }
+        }
+        showInitialInfo();
     }
 
     private static void manageMessages() {
         System.out.println("PLease select one of the option below: " +
                 "\n\t1. Show all messages" +
                 "\n\t2. Send a new message" +
-                "\n\t3. Previous menu");
+                "\n\t3. Delete message" +
+                "\n\t4. Previous menu");
         int choice = 0;
         try {
             choice = scanner.nextInt();
@@ -70,6 +134,7 @@ public class Main {
         switch (choice) {
             case 1 -> showAllMessage();
             case 2 -> sendNewMessage();
+            case 3 -> deleteMessage();
             default -> showInitialInfo();
         }
 
