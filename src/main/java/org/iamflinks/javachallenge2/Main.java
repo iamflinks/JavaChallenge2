@@ -1,7 +1,6 @@
 package org.iamflinks.javachallenge2;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -65,7 +64,6 @@ public class Main {
         boolean isFound = false;
         Contact isContact = null;
         Message delMessage = null;
-        ArrayList<Message> contactMessages = new ArrayList<>();
         // Ask user to enter another name id the previous is not valid
         if (name.equals("")) {
             System.out.println("Please enter a valid name");
@@ -79,7 +77,7 @@ public class Main {
                 }
             }
             if (isFound) {
-                contactMessages.addAll(isContact.getMessages());
+                ArrayList<Message> contactMessages = new ArrayList<>(isContact.getMessages());
                 if (contactMessages.size()>0) {
                     // Show all the messages to the user to chose which one to delete
                     for (Message m: contactMessages) {
@@ -89,7 +87,7 @@ public class Main {
                     // Prompt user for message ID
                     System.out.print("Please enter the ID of the message you want to delete: ");
                     int id = 0;
-                    // cath the exception if user enters a text instead
+                    // catch the exception if user enters a text instead
                     try {
                         id = scanner.nextInt();
                     } catch (Exception e) {
@@ -130,11 +128,12 @@ public class Main {
     }
 
     private static void manageMessages() {
-        System.out.println("PLease select one of the option below: " +
-                "\n\t1. Show all messages" +
-                "\n\t2. Send a new message" +
-                "\n\t3. Delete message" +
-                "\n\t4. Previous menu");
+        System.out.println("""
+                PLease select one of the option below:\s
+                \t1. Show all messages
+                \t2. Send a new message
+                \t3. Delete message
+                \t4. Previous menu""");
         int choice = 0;
         try {
             choice = scanner.nextInt();
@@ -210,12 +209,13 @@ public class Main {
     }
 
     private static void manageContacts() {
-        System.out.println("Please select an option:" +
-                "\n\t1. Show all contacts" +
-                "\n\t2. Add new contact" +
-                "\n\t3. Search for a contact" +
-                "\n\t4. Delete a contact" +
-                "\n\t5. Previous menu");
+        System.out.println("""
+                Please select an option:
+                \t1. Show all contacts
+                \t2. Add new contact
+                \t3. Search for a contact
+                \t4. Delete a contact
+                \t5. Previous menu""");
 
         int choice = 0;
         try {
