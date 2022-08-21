@@ -65,9 +65,8 @@ public class Main {
         try {
             choice = scanner.nextInt();
         } catch (Exception e) {
-            System.out.println("Please select a valid choice.");
+            System.out.println("Please select a valid choice.\n");
         }
-
         switch (choice) {
             case 1 -> showAllMessage();
             case 2 -> sendNewMessage();
@@ -96,7 +95,8 @@ public class Main {
                     System.out.println("Please enter a message: ");
                     sendNewMessage();
                 } else  {
-                    Message message = new Message(name, text, id++);
+                    id++;
+                    Message message = new Message(name, text, id);
                     for (Contact c: contacts) {
                         if (c.getName().equals(name)){
                             ArrayList<Message> newMessages = c.getMessages();
@@ -105,15 +105,16 @@ public class Main {
                             currentContact.setMessages(newMessages);
                             contacts.remove(c);
                             contacts.add(currentContact);
+                            System.out.println("Message sent successfully");
                         }
                     }
                 }
 
             } else {
-                System.out.println(name + "is not in your contact list");
+                System.out.println(name + " is not in your contact list");
             }
         }
-
+        showInitialInfo();
     }
 
     private static void showAllMessage() {
@@ -144,7 +145,7 @@ public class Main {
         try {
             choice = scanner.nextInt();
         } catch (Exception e) {
-            System.out.println("Please select a valid choice.");
+            System.out.println("Please select a valid choice.\n");
         }
 
         switch (choice) {

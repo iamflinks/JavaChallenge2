@@ -5,7 +5,7 @@ public class Message {
     private String recipient;
     private int id;
 
-    public Message(String text, String recipient, int id) {
+    public Message(String recipient, String text, int id) {
         this.text = text;
         this.recipient = recipient;
         this.id = id;
@@ -14,7 +14,7 @@ public class Message {
     public void getDetails() {
         System.out.println("Contact Name: " + recipient +
                 "\nMessage: " + text +
-                "\n ID: " +id);
+                "\nID: " +id);
     }
 
     public String getText() {
